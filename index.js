@@ -34,13 +34,18 @@ console.log(winner(fifaData, 2014, "Final"));
 
 /* Task 2: Create a function called  getFinals that takes `data` as an argument and returns an array of objects with only finals data */
 function getFinals(data) {
-    const finalData = [];
-    for(let i = 0; i < data.length; i++){  
-        if(data[i]["Stage"] === "Final"){
-            finalData.push(data[i]);
-        }
-    }
-    return finalData;
+    // const finalData = [];
+    // for(let i = 0; i < data.length; i++){  
+    //     if(data[i]["Stage"] === "Final"){
+    //         finalData.push(data[i]);
+    //     }
+    // }
+    // return finalData;
+// did it using filter array method as well
+    const finalsArray = data.filter(function(item){
+        return item["Stage"] === "Final";
+    });
+return finalsArray;
 };
 console.log(getFinals(fifaData));
 
@@ -57,17 +62,29 @@ console.log(getYears(getFinals(fifaData)));
 /* Task 5: Implement a higher-order function called `getWinners`, that accepts the callback function `getFinals()` and determine the winner (home or away) of each `finals` game. Return the name of all winning countries in an array called `winners` */ 
 
 function getWinners(callback) {
-    const winners = [];
-    for(let i = 0; i < callback.length; i++){
-        if(callback[i]["Home Team Goals"] + callback[i]["Half-time Home Goals"] > callback[i]["Away Team Goals"] + callback[i]["Half-time Away Goals"]){
-             winners.push(callback[i]["Home Team Name"]);
-        }
-        else{
-            winners.push(callback[i]["Away Team Name"]);
-            }
+//     const winners = [];
+//     for(let i = 0; i < callback.length; i++){
+//         if(callback[i]["Home Team Goals"] + callback[i]["Half-time Home Goals"] > callback[i]["Away Team Goals"] + callback[i]["Half-time Away Goals"]){
+//              winners.push(callback[i]["Home Team Name"]);
+//         }
+//         else{
+//             winners.push(callback[i]["Away Team Name"]);
+//             }
+// }
+// return winners;
+// }
+    const winnersArray = []; // did it using forEach as well.
+    callback.forEach(function(item){
+        if(item["Home Team Goals"] + item["Half-time Home Goals"] > item["Away Team Goals"] + item["Half-time Away Goals"]){
+            winnersArray.push(item["Home Team Name"]);
+       }
+       else{
+           winnersArray.push(item["Away Team Name"]);
+           }
+    });
+    return winnersArray;
 }
-return winners;
-}
+
 console.log(getWinners(getFinals(fifaData)));
 
 /* Task 6: Implement a higher-order function called `getWinnersByYear` that accepts the following parameters and returns a set of strings "In {year}, {country} won the world cup!" 
@@ -77,7 +94,7 @@ Parameters:
  * callback function getYears
  */
 
-function getWinnersByYear(/* code here */) {
+function getWinnersByYear(wins, years) {
 
 };
 
