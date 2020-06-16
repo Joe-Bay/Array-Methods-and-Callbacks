@@ -11,6 +11,14 @@ console.log('its working');
 (c) Home Team goals for 2014 world cup final
 (d) Away Team goals for 2014 world cup final
 (e) Winner of 2014 world cup final */
+function homeName(arr, year, stage, item){ // this finds any data as long as you give it the year, stage, and respected item you are looking for
+for(let i = 0; i < arr.length; i++){
+    if(arr[i]["Year"] === year && arr[i]["Stage"] === stage){
+        return arr[i][item];
+    }
+}
+}
+//console.log(homeName(fifaData, 2014, "Final", "Win conditions"));
 
 
 /* Task 2: Create a function called  getFinals that takes `data` as an argument and returns an array of objects with only finals data */
