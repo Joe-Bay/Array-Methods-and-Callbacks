@@ -109,7 +109,7 @@ function getAverageGoals(data) {
     const averageAway = data.reduce(function(acc, item){
         return acc + item["Away Team Goals"];
     }, 0)
-    return `Average goals for Home: ${averageHome / data.length.toFixed(0)} and the average goals for Away: ${averageAway / data.length}`;
+    return `Average goals for Home: ${(averageHome / data.length).toFixed(0)} and the average goals for Away: ${(averageAway / data.length).toFixed(0)}`;
 };
 
 console.log(getAverageGoals(fifaData));
